@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Halcyon Photography Studio
 
-## Getting Started
+A demo website for a fictional photography studio, built by [MyClickAid](https://myclickaid.com) for its portfolio gallery.
 
-First, run the development server:
+**Live demo:** https://halcyon-demo.derin-obasa.workers.dev/
+
+> **A fictional studio.** Halcyon Photography Studio, its clients, press quotes, reviews and prices are made up for this demo. No form sends any data.
+
+## What it shows
+
+- **Full-screen hero slideshow:** four captioned slides.
+- **Home page:** a press strip, a diptych feature, a hover list of recent stories, a filmstrip, three session packages and testimonials.
+- **Portfolio:** a gallery filtered by category (weddings, portraits, events, products) with a lightbox. Images of mixed shapes sit together without cropping.
+- **Packages:** three session packages with prices. Choosing one opens the booking form with that package selected.
+- **Booking:** an inquiry form that reads the chosen package and session type from the link, with a demo confirmation.
+- **About:** the studio and how it works.
+- **Details:** animated counters, scroll animations, a footer toolbar and keyboard-friendly menus.
+
+## Built with
+
+- [Next.js](https://nextjs.org/) (App Router, JavaScript, static export)
+- [Tailwind CSS](https://tailwindcss.com/) v4
+- Fonts: Bodoni Moda and Jost, loaded with `next/font/google`
+- Hosted on Cloudflare
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+To create the production build (a static site in the `out` folder):
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/
+  _components/   Header, Footer, HeroSlides, Diptych, StoryList, Filmstrip, PortfolioGallery, Lightbox, BookingForm, ...
+  _lib/          data.js, pictures.js, helpers
+  _styles/       globals.css
+  portfolio/  packages/  booking/  about/
+public/          Photos (.webp)
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Photos
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Photos are optional. Every slot works as a coloured placeholder until you add an image. Put the files in `public/` and register them in `app/_lib/pictures.js`.
 
-## Deploy on Vercel
+| Slot           | File                                 | Size                                           |
+| -------------- | ------------------------------------ | ---------------------------------------------- |
+| Hero slideshow | `hw-hero-1.webp` to `hw-hero-4.webp` | 2400 × 1500, landscape                         |
+| Portfolio      | `hw-p1.webp` to `hw-p10.webp`        | Shape follows each item's `ratio` in `data.js` |
+| About          | `hw-about.webp`                      | 1100 × 1400, portrait                          |
+| Closing banner | `hw-cta.webp`                        | 2400 × 1400, landscape                         |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The site is a static export (`output: "export"` in `next.config.mjs`) and deploys to Cloudflare from this repository. Every push to the main branch rebuilds and redeploys it.
+
+## About MyClickAid
+
+MyClickAid is a bespoke web design studio. This site is one of several demo projects that show what a custom-designed website can look like for different kinds of businesses.
